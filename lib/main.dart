@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'models/sale_model.dart';
-import 'views/sales_input_page.dart';
+import 'views/main_navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,8 +32,8 @@ class AmagiTrackApp extends StatelessWidget {
         primarySwatch: Colors.brown,
         useMaterial3: true,
       ),
-      // Memanggil SalesInputPage dari folder views
-      home: const SalesInputPage(), 
+      // Memanggil MainNavigation sebagai shell utama
+      home: const MainNavigation(), 
     );
   }
 }
