@@ -18,16 +18,44 @@ class _SalesInputPageState extends State<SalesInputPage> {
 
   String? _selectedMenu;
   String _quantityStr = '0';
+  String _selectedCategory = '☕ Kopi';
 
-  final Map<String, int> _menuList = {
-    'Kopi Hitam': 13000,
-    'Kopi Susu': 15000,
-    'Kopi Krim': 15000,
-    'Kopi Milo Krim': 20000,
-    'Kopi Gula Aren': 20000,
-    'Cappuccino': 18000,
-    'V60': 20000,
+  // Menu dikelompokkan berdasarkan kategori
+  final Map<String, Map<String, int>> _menuCategories = {
+    '☕ Kopi': {
+      'Kopi Hitam': 13000,
+      'Kopi Susu': 15000,
+      'Kopi Krim': 15000,
+      'Kopi Milo Krim': 20000,
+      'Kopi Gula Aren': 20000,
+      'Cappuccino': 18000,
+      'V60': 20000,
+    },
+    '🍵 Teh': {
+      'Teh': 5000,
+      'Teh Tarik': 15000,
+      'Lemon Tea': 10000,
+      'Leci Tea': 10000,
+      'Peach Tea': 10000,
+    },
+    '🥤 Non Kopi': {
+      'Milo': 15000,
+      'Milo Krim': 20000,
+      'Red Velvet': 20000,
+      'Orange Squash': 20000,
+      'Blue Curacao (krim/soda)': 20000,
+      'Raspberry (krim/soda)': 20000,
+    },
   };
+
+  // Gabungan semua menu untuk lookup harga
+  Map<String, int> get _allMenus {
+    final map = <String, int>{};
+    for (var category in _menuCategories.values) {
+      map.addAll(category);
+    }
+    return map;
+  }
 
   Box<Sale> get _salesBox => Hive.box<Sale>('sales_box');
 
@@ -35,7 +63,7 @@ class _SalesInputPageState extends State<SalesInputPage> {
 
   int get _subtotal {
     if (_selectedMenu == null || _quantity <= 0) return 0;
-    return _menuList[_selectedMenu]! * _quantity;
+    return _allMenus[_selectedMenu]! * _quantity;
   }
 
   int _getTodaySalesCount() {
@@ -80,7 +108,7 @@ class _SalesInputPageState extends State<SalesInputPage> {
     final newSale = Sale(
       menuName: _selectedMenu!,
       quantity: _quantity,
-      pricePerItem: _menuList[_selectedMenu]!,
+      pricePerItem: _allMenus[_selectedMenu]!,
       dateTime: DateTime.now(),
     );
 
@@ -122,13 +150,14 @@ class _SalesInputPageState extends State<SalesInputPage> {
                   // App Header
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: _primaryGreen,
-                          borderRadius: BorderRadius.circular(8),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          '../../assets/images/amagi_logo.png',
+                          width: 32,
+                          height: 32,
+                          fit: BoxFit.contain,
                         ),
-                        child: const Icon(Icons.coffee, color: Colors.white, size: 18),
                       ),
                       const SizedBox(width: 10),
                       const Text(
@@ -178,45 +207,48 @@ class _SalesInputPageState extends State<SalesInputPage> {
                   ),
                   const SizedBox(height: 12),
 
-                  // New Transaction Banner
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE8F5E9),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'New Transaction',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: _textPrimary,
+                  // Kategori Tab Selector
+                  Row(
+                    children: _menuCategories.keys.map((category) {
+                      final isActive = _selectedCategory == category;
+                      return Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 3),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedCategory = category;
+                                _selectedMenu = null;
+                              });
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              decoration: BoxDecoration(
+                                color: isActive ? _primaryGreen : Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: isActive
+                                      ? _primaryGreen
+                                      : const Color(0xFFE0E0E0),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  category,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: isActive
+                                        ? Colors.white
+                                        : _textPrimary,
+                                  ),
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              'Log customer order efficiently',
-                              style: TextStyle(fontSize: 12, color: _textSecondary),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: _primaryGreen,
-                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Icon(Icons.shopping_cart, color: Colors.white, size: 20),
                         ),
-                      ],
-                    ),
+                      );
+                    }).toList(),
                   ),
                   const SizedBox(height: 20),
 
@@ -242,15 +274,16 @@ class _SalesInputPageState extends State<SalesInputPage> {
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         isExpanded: true,
-                        hint: Text('Pilih Menu', style: TextStyle(color: _textSecondary)),
+                        hint: Text(
+                          'Pilih Menu',
+                          style: TextStyle(color: _textSecondary),
+                        ),
                         value: _selectedMenu,
-                        icon: Icon(Icons.keyboard_arrow_down, color: _textSecondary),
-                        items: _menuList.keys.map((key) {
-                          return DropdownMenuItem(
-                            value: key,
-                            child: Text(key, style: const TextStyle(color: _textPrimary)),
-                          );
-                        }).toList(),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: _textSecondary,
+                        ),
+                        items: _buildCategoryMenuItems(),
                         onChanged: (val) => setState(() => _selectedMenu = val),
                       ),
                     ),
@@ -292,7 +325,10 @@ class _SalesInputPageState extends State<SalesInputPage> {
                   // Subtotal
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFE8F5E9),
                       borderRadius: BorderRadius.circular(12),
@@ -305,7 +341,11 @@ class _SalesInputPageState extends State<SalesInputPage> {
                             color: _primaryGreen,
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: const Icon(Icons.receipt, color: Colors.white, size: 16),
+                          child: const Icon(
+                            Icons.receipt,
+                            color: Colors.white,
+                            size: 16,
+                          ),
                         ),
                         const SizedBox(width: 12),
                         Column(
@@ -313,7 +353,10 @@ class _SalesInputPageState extends State<SalesInputPage> {
                           children: [
                             Text(
                               'Subtotal',
-                              style: TextStyle(fontSize: 12, color: _textSecondary),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: _textSecondary,
+                              ),
                             ),
                             Text(
                               formatRupiah(_subtotal),
@@ -381,7 +424,7 @@ class _SalesInputPageState extends State<SalesInputPage> {
           padding: const EdgeInsets.only(bottom: 8),
           child: Row(
             children: row.map((key) {
-            return Expanded(
+              return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: Material(
@@ -398,13 +441,19 @@ class _SalesInputPageState extends State<SalesInputPage> {
                         ),
                         child: Center(
                           child: key == '⌫'
-                              ? Icon(Icons.backspace_outlined, size: 20, color: _textSecondary)
+                              ? Icon(
+                                  Icons.backspace_outlined,
+                                  size: 20,
+                                  color: _textSecondary,
+                                )
                               : Text(
                                   key,
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    color: key == 'C' ? Colors.red : _textPrimary,
+                                    color: key == 'C'
+                                        ? Colors.red
+                                        : _textPrimary,
                                   ),
                                 ),
                         ),
@@ -418,5 +467,28 @@ class _SalesInputPageState extends State<SalesInputPage> {
         );
       }).toList(),
     );
+  }
+
+  // Membuat dropdown items berdasarkan kategori yang dipilih
+  List<DropdownMenuItem<String>> _buildCategoryMenuItems() {
+    final menus = _menuCategories[_selectedCategory] ?? {};
+    return menus.entries.map((entry) {
+      return DropdownMenuItem<String>(
+        value: entry.key,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              entry.key,
+              style: const TextStyle(color: Color(0xFF1A1A1A), fontSize: 14),
+            ),
+            Text(
+              formatRupiah(entry.value),
+              style: const TextStyle(color: Color(0xFF8B8B8B), fontSize: 12),
+            ),
+          ],
+        ),
+      );
+    }).toList();
   }
 }
