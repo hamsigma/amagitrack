@@ -137,6 +137,21 @@ flutter run
 flutter build apk --split-per-abi
 ```
 
+### Opsi C: Download APK Siap Pakai (Direct Install)
+
+Jika Anda hanya ingin langsung menginstal dan menguji aplikasi **AmagiTrack** langsung di perangkat Android, kami telah menyediakan APK hasil optimasi yang siap pakai:
+
+1. **[Download APK v8a (Rekomendasi)](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-arm64-v8a-release.apk)** * *Cocok untuk smartphone Android modern/keluaran baru (Arsitektur 64-bit).*
+   * *Ukuran file lebih efisien dan performa lebih optimal.*
+
+2. **[Download APK v7a](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-armeabi-v7a-release.apk)** * *Cocok untuk smartphone Android tipe lama (Arsitektur 32-bit).*
+
+**Cara Instalasi:**
+* Unduh salah satu file APK di atas langsung melalui perangkat Android Anda.
+* Buka file hasil unduhan tersebut.
+* Jika muncul peringatan keamanan, pilih **Allow/Izinkan** instalasi dari *"Unknown Sources"* (Sumber Tidak Dikenal).
+* Aplikasi **AmagiTrack** siap digunakan secara *offline*
+
 ## Penggunaan
 
 1. Buka halaman Input Penjualan.
