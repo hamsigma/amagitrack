@@ -22,13 +22,13 @@ AmagiTrack adalah aplikasi mobile pencatatan penjualan offline berbasis Android 
 
 ## Team Contributions
 
-| Role | Members |
-|---|---|
-| UI/UX Design | **Ilham Ramadhani**: Merancang alur pengguna (User Flow) dan wireframe.<br><br>**Fatwa Ikhwan Maulaya**: Membuat desain high-fidelity, menentukan palet warna, tipografi, dan aset ikon aplikasi. |
-| Flutter Development | **Muhammad Zaky Vierrzady**: Slicing UI halaman Input Penjualan.<br><br>**Alil Akbar**: Slicing UI halaman Riwayat dan Dashboard.<br><br>**Muh Bintang Novariansah Putra**: Integrasi database dan logika perhitungan total pendapatan harian. |
-| Database Integration | **Angga Maulana Saputra**: Inisialisasi database Hive, model data Sales, dan fungsi simpan/panggil data. |
-| Testing & QA | **Muhammad Nabil Syafiq**: Pengujian aplikasi pada emulator dan perangkat fisik serta pencatatan bug. |
-| Documentation | **Jerremy Christian Thio**: Pengaturan milestone dan koordinasi dengan pihak UMKM.<br><br>**Haidar Halim**: Penyusunan PRD, laporan UTS/UAS, dan dokumentasi lapangan. |
+| Role                 | Members                                                                                                                                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UI/UX Design         | **Ilham Ramadhani**: Merancang alur pengguna (User Flow) dan wireframe.<br><br>**Fatwa Ikhwan Maulaya**: Membuat desain high-fidelity, menentukan palet warna, tipografi, dan aset ikon aplikasi.                                              |
+| Flutter Development  | **Muhammad Zaky Vierrzady**: Slicing UI halaman Input Penjualan.<br><br>**Alil Akbar**: Slicing UI halaman Riwayat dan Dashboard.<br><br>**Muh Bintang Novariansah Putra**: Integrasi database dan logika perhitungan total pendapatan harian. |
+| Database Integration | **Angga Maulana Saputra**: Inisialisasi database Hive, model data Sales, dan fungsi simpan/panggil data.                                                                                                                                       |
+| Testing & QA         | **Muhammad Nabil Syafiq**: Pengujian aplikasi pada emulator dan perangkat fisik serta pencatatan bug.                                                                                                                                          |
+| Documentation        | **Jerremy Christian Thio**: Pengaturan milestone dan koordinasi dengan pihak UMKM.<br><br>**Haidar Halim**: Penyusunan PRD, laporan UTS/UAS, dan dokumentasi lapangan.                                                                         |
 
 ## Target Pengguna
 
@@ -52,8 +52,8 @@ AmagiTrack adalah aplikasi mobile pencatatan penjualan offline berbasis Android 
 - **Riwayat Penjualan**  
   Menampilkan daftar transaksi berdasarkan waktu lengkap dengan nama menu, jumlah item, serta waktu transaksi.
 
-- **Dashboard Total Penjualan Harian**  
-  Menampilkan rekapitulasi otomatis total pendapatan harian untuk membantu evaluasi performa penjualan.
+- **Dashboard & Grafik Analisis**  
+  Menampilkan rekapitulasi otomatis total pendapatan harian, persentase performa penjualan, serta visualisasi grafik tren penjualan secara mingguan (Weekly) dan bulanan (Monthly). Hal ini membantu pemilik usaha mengevaluasi performa tanpa menghitung manual.
 
 ## Kebutuhan Sistem
 
@@ -143,14 +143,15 @@ flutter build apk --split-per-abi
 
 Jika Anda hanya ingin langsung menginstal dan menguji aplikasi **AmagiTrack** langsung di perangkat Android:
 
-1. **[Download APK v8a (Rekomendasi)](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-arm64-v8a-release.apk)** * *Cocok untuk perangkat Android modern/keluaran baru (Arsitektur 64-bit).*
-2. **[Download APK v7a](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-armeabi-v7a-release.apk)** * *Cocok untuk perangkat Android tipe lama (Arsitektur 32-bit).*
+1. **[Download APK v8a (Rekomendasi)](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-arm64-v8a-release.apk)** \* _Cocok untuk perangkat Android modern/keluaran baru (Arsitektur 64-bit)._
+2. **[Download APK v7a](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-armeabi-v7a-release.apk)** \* _Cocok untuk perangkat Android tipe lama (Arsitektur 32-bit)._
 
 **Cara Instalasi:**
-* Unduh salah satu file APK di atas langsung melalui perangkat Android Anda.
-* Buka file hasil unduhan tersebut.
-* Jika muncul peringatan keamanan, pilih **Allow/Izinkan** instalasi dari *"Unknown Sources"* (Sumber Tidak Dikenal).
-* Aplikasi **AmagiTrack** siap digunakan secara *offline*
+
+- Unduh salah satu file APK di atas langsung melalui perangkat Android Anda.
+- Buka file hasil unduhan tersebut.
+- Jika muncul peringatan keamanan, pilih **Allow/Izinkan** instalasi dari _"Unknown Sources"_ (Sumber Tidak Dikenal).
+- Aplikasi **AmagiTrack** siap digunakan secara _offline_
 
 ## Penggunaan
 
