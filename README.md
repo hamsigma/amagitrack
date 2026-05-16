@@ -110,6 +110,8 @@ lib/
 
 ## Installasi
 
+### Setup Flutter
+
 1. Pastikan Flutter SDK telah terinstal.
 2. Clone repository:
 
@@ -137,14 +139,12 @@ flutter run
 flutter build apk --split-per-abi
 ```
 
-### Opsi C: Download APK Siap Pakai (Direct Install)
+### Download APK
 
-Jika Anda hanya ingin langsung menginstal dan menguji aplikasi **AmagiTrack** langsung di perangkat Android, kami telah menyediakan APK hasil optimasi yang siap pakai:
+Jika Anda hanya ingin langsung menginstal dan menguji aplikasi **AmagiTrack** langsung di perangkat Android:
 
-1. **[Download APK v8a (Rekomendasi)](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-arm64-v8a-release.apk)** * *Cocok untuk smartphone Android modern/keluaran baru (Arsitektur 64-bit).*
-   * *Ukuran file lebih efisien dan performa lebih optimal.*
-
-2. **[Download APK v7a](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-armeabi-v7a-release.apk)** * *Cocok untuk smartphone Android tipe lama (Arsitektur 32-bit).*
+1. **[Download APK v8a (Rekomendasi)](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-arm64-v8a-release.apk)** * *Cocok untuk perangkat Android modern/keluaran baru (Arsitektur 64-bit).*
+2. **[Download APK v7a](https://github.com/hamsigma/amagitrack/releases/download/v1.0.0/app-armeabi-v7a-release.apk)** * *Cocok untuk perangkat Android tipe lama (Arsitektur 32-bit).*
 
 **Cara Instalasi:**
 * Unduh salah satu file APK di atas langsung melalui perangkat Android Anda.
