@@ -108,7 +108,7 @@ lib/
 └── main.dart   # Entry point aplikasi
 ```
 
-## Installasi
+## Instalasi
 
 ### Setup Flutter
 
