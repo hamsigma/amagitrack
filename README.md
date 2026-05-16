@@ -117,9 +117,10 @@ lib/
 git clone https://github.com/hamsigma/amagitrack.git
 ```
 
-3. Install dependencies:
+3. Masuk ke direktori proyek dan install dependencies:
 
 ```bash
+cd amagitrack
 flutter pub get
 ```
 
@@ -133,7 +134,7 @@ flutter run
 6. Build APK production:
 
 ```bash
-flutter build apk --release
+flutter build apk --split-per-abi
 ```
 
 ## Penggunaan
