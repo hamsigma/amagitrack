@@ -68,7 +68,7 @@ AmagiTrack adalah aplikasi mobile pencatatan penjualan offline berbasis Android 
 ### Kebutuhan Non-Fungsional
 
 - Aplikasi berjalan sepenuhnya offline.
-- Waktu respon penyimpanan kurang dari 1 detik.
+- Waktu respon penyimpanan kurang dari 5 detik.
 - Antarmuka sederhana dan mudah digunakan.
 - Penanganan error mencegah aplikasi crash saat input tidak valid.
 
