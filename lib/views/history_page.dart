@@ -359,7 +359,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.asset(
-                                    '../../assets/images/amagi_logo.png',
+                                    'assets/images/amagi_logo.png',
                                     width: 32,
                                     height: 32,
                                     fit: BoxFit.contain,

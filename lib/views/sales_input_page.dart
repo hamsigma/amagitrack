@@ -153,7 +153,7 @@ class _SalesInputPageState extends State<SalesInputPage> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          '../../assets/images/amagi_logo.png',
+                          'assets/images/amagi_logo.png',
                           width: 32,
                           height: 32,
                           fit: BoxFit.contain,
